@@ -2,8 +2,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <GL/glu.h>
-using namespace std;
-#define cout(a) cout<<a<<endl
+
+#define cout(a) std::cout<<a<<std::endl
 
 float scale = 1, x = 0.0, y = 0.0, cal_angle = 0.0;
 float animation_angle = 0;
@@ -90,7 +90,7 @@ void GetGLOBALPos()
 	// cout<<posX<<" "<<posY<<endl;
     //return CVector3(posX, posY, posZ);
 }
-void animation( vector<Button> arr){
+void animation( std::vector<Button> arr){
 	// if(posX<=.5 && posX>=-.5 && posY<=.5 && posY>=-.5){
 		int index=0;
 		float min = 1000;
@@ -111,7 +111,7 @@ void animation( vector<Button> arr){
 		glRotatef( animation_angle,0,0,1);
 		animation_angle+=5;
 		if(animation_angle ==200){
-			cout<<arr[index]._value<<" Pressed\n";
+			std::cout<<arr[index]._value<<" Pressed\n";
 			animation_flag = 0;
 			animation_angle = 0;
 		}
@@ -138,7 +138,7 @@ void animation( vector<Button> arr){
 	// return arr[index];
 }
 
-void first_right_click( vector<Button> arr){
+void first_right_click( std::vector<Button> arr){
 	// int index=0;
 	float min = 1000;
 	for(int i=0;i<16;i++){
@@ -153,7 +153,7 @@ void first_right_click( vector<Button> arr){
 	
 }
 
-vector<Button> update_buttons(vector<Button> arr){
+std::vector<Button> update_buttons(std::vector<Button> arr){
 	float newx = posX; float newy = posY;
 	float xdis = newx-arr[rightclickindex].center_x;
 	float ydis = newy-arr[rightclickindex].center_y;
@@ -172,7 +172,7 @@ vector<Button> update_buttons(vector<Button> arr){
 	return 	arr;
 }
 
-vector<Button> reset_cal(vector<Button> vec, Button arr[]){
+std::vector<Button> reset_cal(std::vector<Button> vec, Button arr[]){
 	for (int i=0;i<16;i++){
 		vec[i] = arr[i];
 	}
@@ -309,7 +309,7 @@ int main(){
 	Button divide =  *(new Button(vertices[1][6],vertices[1][7],vertices[0][7],vertices[0][6],'/'));
     
 	Button buttons[16] = {zero, dot, equal, plus, one, two, three, minus, four, five, six, multiply, seven, eight, nine, divide};
-	vector<Button> vbuttons(16);
+	std::vector<Button> vbuttons(16);
 	for(int i=0;i<16;i++){
 		vbuttons[i] = buttons[i];
 	}
