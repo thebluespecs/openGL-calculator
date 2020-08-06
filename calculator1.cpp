@@ -3,8 +3,6 @@
 #include <GLFW/glfw3.h>
 #include <GL/glu.h>
 
-#define cout(a) std::cout<<a<<std::endl
-
 float scale = 1, x = 0.0, y = 0.0, cal_angle = 0.0;
 float animation_angle = 0;
 double xpos, ypos;
@@ -148,7 +146,6 @@ void first_right_click( std::vector<Button> arr){
 			rightclickindex = i;
 		}
 	}
-	// cout(rightclickindex);
 
 	
 }
@@ -237,7 +234,7 @@ int main(){
 
 	// Initializing GLFW
 	if(!glfwInit()){
-		cout("GLFW initialization failed.");
+		std::cout<<"GLFW initialization failed."<<std::endl;
 		glfwTerminate();
 		return 1;
 	}
@@ -249,7 +246,7 @@ int main(){
 	
 	GLFWwindow* mainWindow = glfwCreateWindow(WIDTH, HEIGHT, "CALCULATOR", NULL, NULL);
 	if(!mainWindow){
-		cout("GLFW window creation failed.");
+		std::cout<<"GLFW window creation failed."<<std::endl;
 		glfwTerminate();
 		return 1;
 	}
@@ -265,7 +262,7 @@ int main(){
 	glewExperimental = GL_TRUE;
 
 	if(glewInit() != GLEW_OK){
-		cout("GLEW initialization failed.");
+		std::cout<<"GLEW initialization failed."<<std::endl;
 		glfwDestroyWindow(mainWindow);
 		glfwTerminate();
 		return 1;
@@ -341,7 +338,6 @@ int main(){
 			right_click = 2;
 		}
 		if(right_click == 3){
-			// cout("Translation Done");
 			vbuttons  = update_buttons(vbuttons);
 			right_click = 0;
 		}
@@ -349,7 +345,6 @@ int main(){
 			vbuttons = reset_cal(vbuttons, buttons);
 			reset = 0;
 		}
-		// cout(rightclickindex);
 		glfwSwapBuffers(mainWindow);
 	}
 
