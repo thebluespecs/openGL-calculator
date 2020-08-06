@@ -3,6 +3,14 @@
 #include <GLFW/glfw3.h>
 #include <GL/glu.h>
 
+// TODO : make a calculator class
+class Calculator{
+private:
+	std::vector<Button> buttons;
+	double currentValueDisplayed = 0; 
+public:
+};
+
 float scale = 1, x = 0.0, y = 0.0, cal_angle = 0.0;
 float animation_angle = 0;
 double xpos, ypos;
@@ -12,20 +20,18 @@ int right_click = 0;
 int rightclickindex=0 ;
 int reset = 0;
 
-class Vertex{
-    public:
+struct Vertex{
     float _x, _y, _z, _r, _g, _b, _alpha;
     Vertex(){}
-    Vertex(float x, float y, float z, float r, float g, float b, float alpha){
-        _x= x; _y= y, _z= z;
-        _r= r, _g= g, _b= b;
-        _alpha = alpha;
-    }
+    Vertex(float x, float y, float z, float r, float g, float b, float alpha)
+	:_x(x), _y(y), _z(z),
+	 _r(r), _g(g), _b(b),
+	 _alpha(alpha)
+	{}
 };
 
-class Button{
-    public:
-    char _value;
+struct Button{
+	char _value;
     Vertex _v1, _v2, _v3, _v4;
 	float center_x, center_y;
     Button(){}
