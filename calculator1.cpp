@@ -3,13 +3,6 @@
 #include <GLFW/glfw3.h>
 #include <GL/glu.h>
 
-// TODO : make a calculator class
-class Calculator{
-private:
-	std::vector<Button> buttons;
-	double currentValueDisplayed = 0; 
-public:
-};
 
 float scale = 1, x = 0.0, y = 0.0, cal_angle = 0.0;
 float animation_angle = 0;
@@ -41,6 +34,15 @@ struct Button{
 	 center_x((v1._x+v2._x)/2), center_y((v2._y+v3._y)/2)
 	{}
 };
+
+// TODO : make a calculator class
+class Calculator{
+private:
+	std::vector<Button> buttons;
+	double currentValueDisplayed = 0; 
+public:
+};
+
 
 void drawButton(Button b){
 	glLoadIdentity();//load identity matrix
@@ -289,25 +291,25 @@ int main(){
 		}
 	}
 
-    Button zero = *(new Button(vertices[7][0],vertices[7][1],vertices[6][1],vertices[6][0],'0'));
-	Button dot = *(new Button(vertices[7][2],vertices[7][3],vertices[6][3],vertices[6][2],'.'));
-    Button equal = *(new Button(vertices[7][4],vertices[7][5],vertices[6][5],vertices[6][4],'='));
-	Button plus =  *(new Button(vertices[7][6],vertices[7][7],vertices[6][7],vertices[6][6],'+'));
+    Button zero  (vertices[7][0],vertices[7][1],vertices[6][1],vertices[6][0],'0');
+	Button dot   (vertices[7][2],vertices[7][3],vertices[6][3],vertices[6][2],'.');
+    Button equal (vertices[7][4],vertices[7][5],vertices[6][5],vertices[6][4],'=');
+	Button plus  (vertices[7][6],vertices[7][7],vertices[6][7],vertices[6][6],'+');
 
-	Button one = *(	new Button(vertices[5][0],vertices[5][1],vertices[4][1],vertices[4][0],'1'));
-	Button two = *(new Button(vertices[5][2],vertices[5][3],vertices[4][3],vertices[4][2],'2'));
-    Button three = *(new Button(vertices[5][4],vertices[5][5],vertices[4][5],vertices[4][4],'3'));
-	Button minus =  *(new Button(vertices[5][6],vertices[5][7],vertices[4][7],vertices[4][6],'-'));   
+	Button one   (vertices[5][0],vertices[5][1],vertices[4][1],vertices[4][0],'1');
+	Button two   (vertices[5][2],vertices[5][3],vertices[4][3],vertices[4][2],'2');
+    Button three (vertices[5][4],vertices[5][5],vertices[4][5],vertices[4][4],'3');
+	Button minus (vertices[5][6],vertices[5][7],vertices[4][7],vertices[4][6],'-');   
 
-	Button four = *(new Button(vertices[3][0],vertices[3][1],vertices[2][1],vertices[2][0],'4'));
-	Button five = *(new Button(vertices[3][2],vertices[3][3],vertices[2][3],vertices[2][2],'5'));
-    Button six = *(new Button(vertices[3][4],vertices[3][5],vertices[2][5],vertices[2][4],'6'));
-	Button multiply =  *(new Button(vertices[3][6],vertices[3][7],vertices[2][7],vertices[2][6],'*'));
+	Button four     (vertices[3][0],vertices[3][1],vertices[2][1],vertices[2][0],'4');  
+	Button five     (vertices[3][2],vertices[3][3],vertices[2][3],vertices[2][2],'5');  
+    Button six      (vertices[3][4],vertices[3][5],vertices[2][5],vertices[2][4],'6');  
+	Button multiply (vertices[3][6],vertices[3][7],vertices[2][7],vertices[2][6],'*');  
 
-	Button seven = *(new Button(vertices[1][0],vertices[1][1],vertices[0][1],vertices[0][0],'7'));
-	Button eight = *(new Button(vertices[1][2],vertices[1][3],vertices[0][3],vertices[0][2],'8'));
-    Button nine = *(new Button(vertices[1][4],vertices[1][5],vertices[0][5],vertices[0][4],'9'));
-	Button divide =  *(new Button(vertices[1][6],vertices[1][7],vertices[0][7],vertices[0][6],'/'));
+	Button seven   (vertices[1][0],vertices[1][1],vertices[0][1],vertices[0][0],'7');
+	Button eight   (vertices[1][2],vertices[1][3],vertices[0][3],vertices[0][2],'8');
+    Button nine    (vertices[1][4],vertices[1][5],vertices[0][5],vertices[0][4],'9');
+	Button divide  (vertices[1][6],vertices[1][7],vertices[0][7],vertices[0][6],'/');
     
 	Button buttons[16] = {zero, dot, equal, plus, one, two, three, minus, four, five, six, multiply, seven, eight, nine, divide};
 	std::vector<Button> vbuttons(16);
