@@ -35,13 +35,11 @@ struct Button{
     Vertex _v1, _v2, _v3, _v4;
 	float center_x, center_y;
     Button(){}
-    Button(Vertex v1,Vertex v2, Vertex v3, Vertex v4, char value){
-        _v1 = v1; _v2 = v2;
-        _v3 = v3; _v4 = v4;
-        _value = value;
-		center_x = (v1._x+v2._x)/2;
-		center_y = (v2._y+v3._y)/2;
-    }
+    Button(Vertex v1,Vertex v2, Vertex v3, Vertex v4, char value)
+	:_v1(v1), _v2(v2), _v3(v3), _v4(v4), 
+	 _value(value), 
+	 center_x((v1._x+v2._x)/2), center_y((v2._y+v3._y)/2)
+	{}
 };
 
 void drawButton(Button b){
