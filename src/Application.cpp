@@ -32,7 +32,7 @@ int main(void)
 
     
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(1920, 1080, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(900, 900, "Hello World", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -56,10 +56,10 @@ int main(void)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     float positions[] = {
-            -0.5f, -0.5f, -1.0f, 
-             0.5f, -0.5f, -1.0f, 
-             0.5f,  0.5f, -1.0f, 
-            -0.5f,  0.5f, -1.0f     
+            -0.125f, -0.125f, -1.0f, 
+             0.125f, -0.125f, -1.0f, 
+             0.125f,  0.125f, -1.0f, 
+            -0.125f,  0.125f, -1.0f     
     };
 
     unsigned int indices[] = {
@@ -112,8 +112,8 @@ int main(void)
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 
-    glm::vec3 translationA(0.0f, 0.0f, 0);
-    // glm::vec3 translationB(0.0f, 0.0f, 0);
+    // glm::vec3 translationA(0.5f, 1.0f, 0);
+    // glm::vec3 translationB(-0.5f, 0.0f, 0);
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
@@ -125,30 +125,41 @@ int main(void)
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
         
-        {
+        for(int i=-2;i<3;i++){
+            for (int j=-2;j<3;j++)
+            {
+                
+                // glm::mat4 model  = glm::translate(glm::mat4(1.0f), translationA);
+                
+                glm::mat4 model  = glm::translate(glm::mat4(1.0f), glm::vec3(i*0.125,j*0.125,0));
 
-            glm::mat4 model  = glm::translate(glm::mat4(1.0f), translationA);
-            glm::mat4 mvp = proj * view * model; 
-    
+                glm::mat4 mvp = proj * view * model; 
+        
 
-            shader.Bind();
-            // shader.SetUniform4f("u_color", r, 0.3f, 0.5f, 1.0f);
-            shader.SetUniformMat4f("u_MVP", mvp);
+                shader.Bind();
+                if (i==2){
+                shader.SetUniform4f("u_color", 0.95f, 0.57f, 0.15f, 1.0f);
+                }
+                else{
+                    shader.SetUniform4f("u_color", 0.7f, 0.7f, 0.7f, 1.0f);
+                }
+                shader.SetUniformMat4f("u_MVP", mvp);
 
-            renderer.Draw(va, ib, shader);
-
+                renderer.Draw(va, ib, shader);
+                
+            }
         }
 
-        {
+        // {
             
-            ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+        //     ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
 
-            ImGui::SliderFloat3("Translation A", &translationA.x, -0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
-            // ImGui::SliderFloat3("Translation B", &translationB.x, -0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+        //     ImGui::SliderFloat3("Translation A", &translationA.x, -0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+        //     ImGui::SliderFloat3("Translation B", &translationB.x, -0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
 
-            ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-            ImGui::End();
-        }
+        //     ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+        //     ImGui::End();
+        // }
 
 
         ImGui::Render();
