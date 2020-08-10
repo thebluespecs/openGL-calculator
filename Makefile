@@ -1,6 +1,6 @@
 run1:
-	g++ -std=c++11 calculator1.cpp -w -lGL -lglfw -lGLEW -lGLU -o p
-	./p
+	g++ -std=c++11 calculator1.cpp -w -lGL -lglfw -lGLEW -lGLU -o bin/p
+	./bin/p
 
 run : Application.o IndexBuffer.o VertexBuffer.o Renderer.o VertexArray.o Shader.o stb_image.o Texture.o imgui.o imgui_impl_opengl3.o imgui_impl_glfw.o imgui_demo.o imgui_draw.o imgui_widgets.o
 	g++ -std=c++11 -o bin/exe Application.o IndexBuffer.o VertexBuffer.o Renderer.o VertexArray.o Shader.o stb_image.o Texture.o imgui.o imgui_impl_opengl3.o imgui_impl_glfw.o imgui_demo.o imgui_draw.o imgui_widgets.o -w -lGL -lglfw -lGLEW -lGLU
